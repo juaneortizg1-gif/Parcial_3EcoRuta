@@ -21,10 +21,7 @@ public class Entrega {
         this.comprobante = null;
     }
 
-    /**
-     * Agrega un lote si la entrega esta abierta, el lote es valido (peso positivo)
-     * y su codigo no se repite dentro de la entrega.
-     */
+
     public boolean agregarLote(Lote lote) {
         if (estado != EstadoEntrega.ABIERTA || lote == null) {
             return false;
@@ -41,10 +38,6 @@ public class Entrega {
         return true;
     }
 
-    /**
-     * Acepta la entrega: suma el valor de los lotes de forma polimorfica y genera el comprobante.
-     * Devuelve null (y no cambia nada) si la entrega esta vacia o ya fue aceptada.
-     */
     public Comprobante aceptar() {
         if (estado != EstadoEntrega.ABIERTA || lotes.isEmpty()) {
             return null;
@@ -71,7 +64,6 @@ public class Entrega {
         return total;
     }
 
-    /** Etiquetas de los lotes que implementan Etiquetable (metales y residuos electronicos). */
     public List<String> obtenerEtiquetas() {
         List<String> etiquetas = new LinkedList<>();
         for (Lote lote : lotes) {
@@ -94,7 +86,6 @@ public class Entrega {
         return comprobante;
     }
 
-    /** Devuelve una copia para que nadie agregue lotes saltandose las validaciones. */
     public List<Lote> getLotes() {
         return new LinkedList<>(lotes);
     }
